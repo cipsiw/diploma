@@ -1,0 +1,38 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Все заявки{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/table.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/font-awesome.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="table-responsive custom-table-responsive">
+    <table class="table custom-table">
+      <thead>
+        <th scope="col">Клиент</th>
+        <th scope="col">Услуга</th>
+        <th scope="col">Сотрудник</th>
+        {% if current_user.is_authenticated %}
+        <th scope="col">Действия</th>
+        {% endif %}
+      </thead>
+      <tbody>
+        {% for applic in applics %}
+        <tr scope="row">
+          <td>{{ applic.client}}</td>
+          <td>{{ applic.service}}</td>
+          <td>{{ applic.stuff}}</td>
+          {% if current_user.is_authenticated %}
+          <td>
+            <a href="{{ url_for('applic.update', id=applic.id) }}" class="btn btn-sm btn-secondary"><span class="fa fa-edit"></span></a>
+            <a href="{{ url_for('applic.delete', id=applic.id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}

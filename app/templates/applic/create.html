@@ -1,0 +1,12 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Добавление заявки{% endblock %}
+
+{% block content %}
+<form method="POST" class="form-control d-flex flex-column gap-2">
+    <input name="client" type="text" placeholder="ФИО клиента" class="form-control">
+    <input name="service" type="text" placeholder="Услуга" class="form-control">
+    <input name="stuff" type="text" placeholder="ФИО сотрудника" class="form-control">
+    <input value="Добавить" type="submit" class="btn btn-success">
+</form>
+{% endblock %}

@@ -1,0 +1,29 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="{{ url_for('applic.all') }}" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <img class="header__img" src="{{ url_for('static', filename='img/home.png') }}" alt="logo">
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('applic.create') }}" class="nav-link px-2">Добавить заявку</a></li>
+        <li><a href="#" class="nav-link px-2">Список услуг</a></li>
+        <li><a href="#" class="nav-link px-2">Справочник</a></li>
+        <li><a href="#" class="nav-link px-2">Отчеты</a></li>
+          {% endif %}
+      </ul>
+
+      <div class="col-md-3 text-end">
+        {% if current_user.is_authenticated %}
+          <span>Добро пожаловать, {{ current_user.name }}</span>
+          <a href="{{ url_for('user.logout') }}" class="btn btn-outline-primary me-2">Выйти</a>
+        {% else %}
+        <a href="{{ url_for('user.login') }}" class="btn btn-outline-primary me-2">Войти</a>
+        <a href="{{ url_for('user.register') }}" class="btn btn-primary">Регистрация</a>
+        {% endif %}
+      </div>
+
+    </header>
+</div>
