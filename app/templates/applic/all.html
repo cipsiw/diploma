@@ -21,15 +21,19 @@
       <tbody>
         {% for applic in applics %}
         <tr scope="row">
-          <td>{{ applic.client}}</td>
+          <td>{{ applic.user.name}}</td>
           <td>{{ applic.service}}</td>
-          <td>{{ applic.stuff}}</td>
-          {% if current_user.is_authenticated %}
           <td>
+            {% with stuff = user.query.get(applic.stuff) %}
+              {{ stuff.name }}
+            {% endwith %}
+          </td>
+          <td>
+            {% if current_user.is_authenticated and applic.user.id == current_user.id %}
             <a href="{{ url_for('applic.update', id=applic.id) }}" class="btn btn-sm btn-secondary"><span class="fa fa-edit"></span></a>
             <a href="{{ url_for('applic.delete', id=applic.id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+            {% endif %}
           </td>
-          {% endif %}
         </tr>
         {% endfor %}
       </tbody>

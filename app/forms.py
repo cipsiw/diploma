@@ -25,3 +25,7 @@ class LoginForm(FlaskForm):
     passw = PasswordField('Пароль', validators=[DataRequired()])
     remember = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
+
+class StuffForm(FlaskForm):
+    stuff = SelectField('stuff', choices=[], render_kw={'class':'form-control'})
+

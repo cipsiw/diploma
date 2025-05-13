@@ -10,8 +10,10 @@
           {% if current_user.is_authenticated %}
         <li><a href="{{ url_for('applic.create') }}" class="nav-link px-2">Добавить заявку</a></li>
         <li><a href="#" class="nav-link px-2">Список услуг</a></li>
+          {% if current_user.status == 'admin' %}
         <li><a href="#" class="nav-link px-2">Справочник</a></li>
         <li><a href="#" class="nav-link px-2">Отчеты</a></li>
+          {% endif %}
           {% endif %}
       </ul>
 
