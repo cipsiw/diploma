@@ -1,0 +1,49 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Все пользователи{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/table.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/font-awesome.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <li><a href="{{ url_for('user.adding') }}" class="btn btn-outline-primary me-2">Добавить пользователя</a></li>
+</div>
+<div class="table-responsive custom-table-responsive">
+  <table class="table custom-table">
+      <thead>
+        {% if current_user.is_authenticated and current_user.status == 'stuff'%}
+        <th scope="col">№ клиента</th>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Отчество</th>
+        <th scope="col">Логин</th>
+        <th scope="col">Статус</th>
+        {% if current_user.status == 'admin' %}
+        <th scope="col">Действия</th>
+        {% endif %}
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr scope="row">
+          <td>{{ user.id}}</td>
+          <td>{{ user.sec_name}}</td>
+          <td>{{ user.name}}</td>
+          <td>{{ user.otch}}</td>
+          <td>{{ user.login}}</td>
+          <td>{{ user.status}}</td>
+          {% if current_user.status == 'admin' %}
+          <td>
+            <a href="{{ url_for('user.update', id=user.id) }}" class="btn btn-sm btn-secondary"><span class="fa fa-edit"></span></a>
+            <a href="{{ url_for('user.delete', id=user.id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+        {% endif %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}

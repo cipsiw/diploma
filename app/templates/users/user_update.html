@@ -1,0 +1,35 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Редактирование клиента {{ user.id }} {% endblock %}
+
+{% block content %}
+<form method="POST" class="form-control d-flex flex-column gap-2">
+    {{ form.hidden_tag() }}
+
+    {{ form.login.label(class="form-label") }}
+    {{ form.login(class="form-control", placeholder="Логин") }}
+
+    {{ form.sec_name.label(class="form-label") }}
+    {{ form.sec_name(class="form-control", placeholder="Фамилия") }}
+
+    {{ form.name.label(class="form-label") }}
+    {{ form.name(class="form-control", placeholder="Имя") }}
+
+    {{ form.otch.label(class="form-label") }}
+    {{ form.otch(class="form-control", placeholder="Отчество") }}
+
+    {{ form.role.label(class="form-label") }}
+    {{ form.role(class="form-select") }}
+
+    {{ form.passw.label(class="form-label") }}
+    {{ form.passw(class="form-control", placeholder="Новый пароль") }}
+
+    {{ form.passw_conf.label(class="form-label") }}
+    {{ form.passw_conf(class="form-control", placeholder="Подтвердите пароль") }}
+
+    <div class="d-flex gap-2">
+        <input type="submit" value="Сохранить" class="btn btn-success">
+        <a href="{{ url_for('user.all') }}" class="btn btn-secondary">Отмена</a>
+    </div>
+</form>
+{% endblock %}
