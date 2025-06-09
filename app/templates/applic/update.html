@@ -1,12 +1,46 @@
-{% extends 'main/base.html'%}
+{% extends 'main/base.html' %}
 
 {% block title %}Редактирование заявки {{ applic.id }} {% endblock %}
 
 {% block content %}
-<form method="POST" class="form-control d-flex flex-column gap-2">
-    <input value="{{ applic.client }}" name="client" type="text" placeholder="ФИО клиента" class="form-control">
-    <input value="{{ applic.service }}" name="service" type="text" placeholder="Услуга" class="form-control">
-    <input value="{{ applic.stuff }}" name="stuff" type="text" placeholder="ФИО сотрудника" class="form-control">
-    <input value="Обновить" type="submit" class="btn btn-success">
+<form method="POST" class="form-control d-flex flex-column gap-2" enctype="multipart/form-data">
+    {% if current_user.status == 'stuff' or current_user.status == 'admin' %}
+        {{ form.client.label(class="form-label") }}
+        {{ form.client(class="form-select") }}
+    {% endif %}
+
+    {{ form.service.label(class="form-label") }}
+    {{ form.service(class="form-select") }}
+
+    {% if current_user.status == 'stuff' or current_user.status == 'admin' %}
+        {{ form.stuff.label(class="form-label") }}
+        {{ form.stuff(class="form-select") }}
+
+        {{ form.status.label(class="form-label") }}
+        {{ form.status(class="form-select") }}
+    {% endif %}
+
+    <div class="mb-3">
+        <label class="form-label">
+            {% if applic.document_path %}
+                Текущий документ: {{ applic.document_path.split('/')[-1] }}
+            {% else %}
+                Прикрепить документ
+            {% endif %}
+        </label>
+        <input type="file" class="form-control" name="document" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+
+        {% if applic.document_path %}
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" name="delete_document" value="y">
+            <label class="form-check-label">Удалить текущий документ</label>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="d-flex gap-2">
+        <input type="submit" value="Сохранить" class="btn btn-success">
+        <a href="{{ url_for('applic.all') }}" class="btn btn-secondary">Отмена</a>
+    </div>
 </form>
 {% endblock %}

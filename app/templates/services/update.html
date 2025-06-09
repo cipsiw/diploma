@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Редактирование услуги {{ service.id }} {% endblock %}
+
+{% block content %}
+
+<form method="POST" class="form-control d-flex flex-column gap-2" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    {{ form.type.label(class="form-label") }}
+    {{ form.type(class="form-select") }}
+
+    {{ form.name.label(class="form-label") }}
+    {{ form.name(class="form-control") }}
+
+    {{ form.price.label(class="form-label") }}
+    {{ form.price(class="form-control") }}
+
+
+
+    <div class="d-flex gap-2">
+        <input type="submit" value="Сохранить" class="btn btn-success">
+        <a href="{{ url_for('services.all') }}" class="btn btn-secondary">Отмена</a>
+    </div>
+</form>
+
+{% endblock %}

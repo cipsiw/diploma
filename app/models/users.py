@@ -14,7 +14,7 @@ class Users(db.Model, UserMixin):
     name = db.Column(db.String(50))
     otch = db.Column(db.String(50))
     login = db.Column(db.String(50))
-    status = db.Column(db.String(50), default='admin')
+    status = db.Column(db.String(50), default='client')
     passw = db.Column(db.String(200))
     scan = db.Column(db.String(200))
     date = db.Column(db.DateTime, default=datetime.utcnow)

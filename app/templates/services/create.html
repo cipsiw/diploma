@@ -1,0 +1,21 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Добавление услуги{% endblock %}
+
+{% block content %}
+<form method="POST" class="form-control d-flex flex-column gap-2">
+    {{ form.hidden_tag() }}
+
+    {{ form.type.label(class="form-label") }}
+    {{ form.type(class="form-control", required=True) }}
+
+    {{ form.name.label(class="form-label") }}
+    {{ form.name(class="form-control", placeholder="Название", required=True) }}
+
+    {{ form.price.label(class="form-label") }}
+    {{ form.price(class="form-control", placeholder="руб.", required=True) }}
+
+    {{ form.submit(class="btn btn-success") }}
+
+</form>
+{% endblock %}

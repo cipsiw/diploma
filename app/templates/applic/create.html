@@ -3,10 +3,26 @@
 {% block title %}Добавление заявки{% endblock %}
 
 {% block content %}
-<form method="POST" class="form-control d-flex flex-column gap-2">
-    <input name="client" type="text" placeholder="ФИО клиента" class="form-control">
-    <input name="service" type="text" placeholder="Услуга" class="form-control">
-    {{ form.stuff }}
+<form method="POST" class="form-control d-flex flex-column gap-2" enctype="multipart/form-data">
+    {% if current_user.status == 'stuff' or current_user.status == 'admin' %}
+    {{ form.client.label(class="form-label") }}
+    {{ form.client(class="form-select", required=True) }}
+    {% endif %}
+
+    {{ form.service.label(class="form-label") }}
+    {{ form.service(class="form-select", required=True) }}
+
+    {% if current_user.status == 'admin' %}
+    {{ form.stuff.label(class="form-label") }}
+    {{ form.stuff(class="form-select", required=True)}}
+    {% endif %}
+
+    <div class="mb-3">
+        <label for="document" class="form-label">Прикрепить документ</label>
+        <input type="file" class="form-control" id="document" name="document" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+        <div class="form-text">Максимальный размер файла: 5MB. Разрешены: PDF, Word, JPG, PNG</div>
+    </div>
+
     <input value="Добавить" type="submit" class="btn btn-success">
 </form>
 {% endblock %}

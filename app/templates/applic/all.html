@@ -8,12 +8,18 @@
 {% endblock %}
 
 {% block content %}
+<li><a href="{{ url_for('applic.create') }}" class="btn btn-outline-primary me-2">Добавить заявку</a></li>
 <div class="table-responsive custom-table-responsive">
-    <table class="table custom-table">
+  <table class="table custom-table">
       <thead>
+        <th scope="col">№ заявки</th>
         <th scope="col">Клиент</th>
         <th scope="col">Услуга</th>
         <th scope="col">Сотрудник</th>
+        <th scope="col">Дата оказания</th>
+        <th scope="col">Состояние</th>
+        <th scope="col">Комментарий сотрудника</th>
+        <th scope="col">Отзыв клиента</th>
         {% if current_user.is_authenticated %}
         <th scope="col">Действия</th>
         {% endif %}
@@ -21,6 +27,7 @@
       <tbody>
         {% for applic in applics %}
         <tr scope="row">
+          <td>{{ applic.id}}</td>
           <td>{{ applic.user.name}}</td>
           <td>{{ applic.service}}</td>
           <td>
@@ -28,12 +35,18 @@
               {{ stuff.name }}
             {% endwith %}
           </td>
+          <td>{{ applic.date}}</td>
+          <td>{{ applic.status}}</td>
+          <td></td>
+          <td>{{ applic.review}}</td>
+          {% if current_user.is_authenticated and (applic.user.id == current_user.id or applic.stuff == current_user.id or current_user.status == 'admin') %}
           <td>
-            {% if current_user.is_authenticated and applic.user.id == current_user.id %}
             <a href="{{ url_for('applic.update', id=applic.id) }}" class="btn btn-sm btn-secondary"><span class="fa fa-edit"></span></a>
+            {% if current_user.is_authenticated and current_user.status == 'admin' %}
             <a href="{{ url_for('applic.delete', id=applic.id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
             {% endif %}
           </td>
+          {% endif %}
         </tr>
         {% endfor %}
       </tbody>

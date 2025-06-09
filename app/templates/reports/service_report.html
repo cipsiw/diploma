@@ -1,0 +1,49 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Отчеты по услугам{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <form method="POST" class="mt-4">
+        {{ form.hidden_tag() }}
+
+        {{ form.report_type.label(class="form-label") }}
+        {{ form.report_type(class="form-select") }}
+
+        <div class="row mb-3" id="month-field" style="display: none;">
+            <div class="col-md-6">
+                {{ form.month.label(class="form-label") }}
+                {{ form.month(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="row mb-3" id="client-field" style="display: none;">
+            <div class="col-md-6">
+                {{ form.client_id.label(class="form-label") }}
+                {{ form.client_id(class="form-select") }}
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success">
+            <input type="submit" value="Сформировать отчет" class="btn btn-success">
+        </button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const reportType = document.getElementById('{{ form.report_type.id }}');
+    const monthField = document.getElementById('month-field');
+    const clientField = document.getElementById('client-field');
+    
+    function updateFields() {
+        const value = reportType.value;
+        monthField.style.display = value === 'monthly' ? 'block' : 'none';
+        clientField.style.display = value === 'client' ? 'block' : 'none';
+    }
+    
+    reportType.addEventListener('change', updateFields);
+    updateFields();
+});
+</script>
+{% endblock %}

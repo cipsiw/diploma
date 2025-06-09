@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="046b2b2b-aa59-4d6c-9e67-b2120682c517" name="Changes" comment="" />
+    <list default="true" id="046b2b2b-aa59-4d6c-9e67-b2120682c517" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/routes/report.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/categ/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/categ/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/categ/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/reports/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/reports/service_report.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/services/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/services/all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/services/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/services/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/applic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/applic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/categ.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/categ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/applic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/applic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/applic/all.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/applic/all.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/applic/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/applic/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/applic/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/applic/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/main/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/_header.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

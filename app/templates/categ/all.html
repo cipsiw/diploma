@@ -1,0 +1,43 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Все категории{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/table.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/font-awesome.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% if current_user.status == 'admin' %}
+  <li><a href="{{ url_for('categories.add') }}" class="btn btn-outline-primary me-2">Добавить категорию</a></li>
+  {% endif %}
+</div>
+<div class="table-responsive custom-table-responsive">
+  <table class="table custom-table">
+      <thead>
+        <th scope="col">№ категории</th>
+        <th scope="col">Название</th>
+        <th scope="col">Требования</th>
+        {% if current_user.status == 'admin' %}
+        <th scope="col">Действия</th>
+      {% endif %}
+      </thead>
+      <tbody>
+        {% for category in categories %}
+        <tr scope="row">
+          <td>{{ category.id}}</td>
+          <td>{{ category.cat_name}}</td>
+          <td>{{ category.cat_reqs}}</td>
+          {% if current_user.status == 'admin' %}
+          <td>
+            <a href="{{ url_for('categories.edit', id=category.id) }}" class="btn btn-sm btn-secondary"><span class="fa fa-edit"></span></a>
+            <a href="{{ url_for('categories.delete', id=category.id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}

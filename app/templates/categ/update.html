@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Редактирование категории {{ category.id }} {% endblock %}
+
+{% block content %}
+
+<form method="POST" class="form-control d-flex flex-column gap-2" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    {{ form.name.label(class="form-label") }}
+    {{ form.name(class="form-control", placeholder="Название", value=category.cat_name, required=True) }}
+
+    {{ form.reqs.label(class="form-label") }}
+    {{ form.reqs(class="form-control", placeholder="Требования", value=category.cat_reqs, required=True) }}
+
+    <div class="d-flex gap-2">
+        <input type="submit" value="Сохранить" class="btn btn-success">
+        <a href="{{ url_for('categories.all') }}" class="btn btn-secondary">Отмена</a>
+    </div>
+</form>
+
+{% endblock %}

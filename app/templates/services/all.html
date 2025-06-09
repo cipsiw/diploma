@@ -1,0 +1,45 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Все услуги{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blocks/table.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/font-awesome.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% if current_user.status == 'admin' %}
+  <li><a href="{{ url_for('services.add') }}" class="btn btn-outline-primary me-2">Добавить услугу</a></li>
+  {% endif %}
+</div>
+<div class="table-responsive custom-table-responsive">
+  <table class="table custom-table">
+      <thead>
+        <th scope="col">№ услуги</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Название</th>
+        <th scope="col">Цена (руб.)</th>
+        {% if current_user.status == 'admin' %}
+        <th scope="col">Действия</th>
+        {% endif %}
+      </thead>
+      <tbody>
+        {% for service in services %}
+        <tr scope="row">
+          <td>{{ service.id}}</td>
+          <td>{{ service.type}}</td>
+          <td>{{ service.name}}</td>
+          <td>{{ service.price}}</td>
+          {% if current_user.status == 'admin' %}
+          <td>
+            <a href="{{ url_for('services.edit', id=service.id) }}" class="btn btn-sm btn-secondary"><span class="fa fa-edit"></span></a>
+            <a href="{{ url_for('services.delete', id=service.id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}

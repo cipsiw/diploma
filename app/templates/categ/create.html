@@ -1,0 +1,18 @@
+{% extends 'main/base.html'%}
+
+{% block title %}Добавление категории{% endblock %}
+
+{% block content %}
+<form method="POST" class="form-control d-flex flex-column gap-2">
+    {{ form.hidden_tag() }}
+
+    {{ form.name.label(class="form-label") }}
+    {{ form.name(class="form-control", placeholder="Название", required=True) }}
+
+    {{ form.reqs.label(class="form-label") }}
+    {{ form.reqs(class="form-control", placeholder="Требования", required=True) }}
+
+    {{ form.submit(class="btn btn-success") }}
+
+</form>
+{% endblock %}
